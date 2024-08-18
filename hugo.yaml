@@ -99,7 +99,7 @@ params:
     hiddenInSingle: true # hide on single page
 
   editPost:
-    URL: "https://github.com/zerosuc/zerosuc.github.io/content"
+    # URL: "https://github.com/zerosuc/zerosuc.github.io/content"
     Text: "Suggest Changes" # edit text
     appendFilePath: true # to append file path to Edit link
 
@@ -115,22 +115,26 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    - identifier: archives # 需做额外配置，具体参考下文
-      name: 归档
-      url: /archives/
-      weight: 10
+    - identifier: home
+      name: 🏠主页
+      url: /
+      weight: 1
+    - identifier: archives
+      name: ⏱时间轴
+      url: archives
+      weight: 3
     - identifier: categories
-      name: 分类
+      name: 🧩分类
       url: /categories/
-      weight: 20
+      weight: 4
     - identifier: tags
-      name: 标签
-      url: /tags/
-      weight: 30
-    - identifier: search # 需做额外配置，具体参考下文
-      name: 搜索
-      url: /search/
-      weight: 40
+      name: 🔖标签
+      url: tags
+      weight: 5
+    - identifier: search
+      name: 🔍搜索
+      url: search
+      weight: 6
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
