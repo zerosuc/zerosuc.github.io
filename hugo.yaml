@@ -3,10 +3,10 @@ title: zerosuc blog
 paginate: 5
 theme: PaperMod
 
-# enableRobotsTXT: true
-# buildDrafts: false
-# buildFuture: false
-# buildExpired: false
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
 
 # googleAnalytics: UA-123-45
 
@@ -15,13 +15,13 @@ theme: PaperMod
 #   minifyOutput: true
 
 params:
-  # env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: "my blog"
   description: "zerosuc blog"
-  keywords: [Blog, wanmin, wanminny]
+  keywords: [zerosuc, wanmin, wanminny]
   author: Me
   # author: ["Me", "You"] # multiple authors
-  # images: ["<link or path of image for opengraph, twitter-cards>"]
+  images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "2006-01-02"
   ShowCodeCopyButtons: true # 显示复制代码按钮
   showtoc: true # 在每篇文章开头显示目录
@@ -29,26 +29,26 @@ params:
   defaultTheme: auto # dark, light
   disableThemeToggle: false
 
-  # ShowReadingTime: true
-  # ShowShareButtons: true
-  # ShowPostNavLinks: true
-  # ShowBreadCrumbs: true
-  # ShowCodeCopyButtons: false
-  # ShowWordCount: true
-  # ShowRssButtonInSectionTermList: true
-  # UseHugoToc: true
-  # disableSpecial1stPost: false
-  # disableScrollToTop: false
-  # comments: false
-  # hidemeta: false
-  # hideSummary: false
-  # showtoc: false
-  # tocopen: false
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: false
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: false
+  hidemeta: false
+  hideSummary: false
+  showtoc: true
+  tocopen: true
 
   assets:
-    # disableHLJS: true # to disable highlight.js
+    disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    # favicon: "<link / abs url>"
+    favicon: "assets/favicon.ico"
     # favicon16x16: "<link / abs url>"
     # favicon32x32: "<link / abs url>"
     # apple_touch_icon: "<link / abs url>"
@@ -93,15 +93,15 @@ params:
   #   yandex:
   #     SiteVerificationTag: "XYZabc"
 
-  # cover:
-  #   hidden: true # hide everywhere but not in structured data
-  #   hiddenInList: true # hide on list pages and home
-  #   hiddenInSingle: true # hide on single page
+  cover:
+    hidden: true # hide everywhere but not in structured data
+    hiddenInList: true # hide on list pages and home
+    hiddenInSingle: true # hide on single page
 
-  # editPost:
-  #   URL: "https://github.com/<path_to_repo>/content"
-  #   Text: "Suggest Changes" # edit text
-  #   appendFilePath: true # to append file path to Edit link
+  editPost:
+    URL: "https://github.com/zerosuc/zerosuc.github.io/content"
+    Text: "Suggest Changes" # edit text
+    appendFilePath: true # to append file path to Edit link
 
   # for search
   # https://fusejs.io/api/options.html
@@ -131,19 +131,6 @@ menu:
       name: 搜索
       url: /search/
       weight: 40
-  # main:
-  #   - identifier: categories
-  #     name: categories
-  #     url: /categories/
-  #     weight: 10
-  #   - identifier: tags
-  #     name: tags
-  #     url: /tags/
-  #     weight: 20
-  #   - identifier: example
-  #     name: example.org
-  #     url: https://example.org
-  #     weight: 30
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
