@@ -642,7 +642,7 @@ Gpu node 可以是 [root@prod.op.k8s.gpu-00.hz ops]
 | TargetDown                         | 100\* (count(up == 0) BY (job, namespace, service) / count(up) BY (job, namespace, service)) > 10                                                                                                                                                                                                                                                                                                                                                                                                                                                    | 10                   | 目标下线。                      |
 | NodeNetworkInterfaceFlapping       | changes(node_network_up{job="node-exporter",device!~"veth.+"}[2m]) > 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 2                    | 网络接口状态变更过频繁。        |
 
-![image-20221103103611205](https://zerosuc.github.io/k8s/image-20221103103611205.png)
+![image-20221103103611205](https://zerosuc.github.io/posts/k8s/image-20221103103611205.png)
 
 ## 巡检
 
