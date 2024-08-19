@@ -195,9 +195,7 @@ Master 节点上运行着 etcd（存储）、kube-apiserver（总控网关）、
 
 在企业内部我们还可以选择一个探活 vip 和 haproxy 做四层的转发；
 
-![](/Users/wanmin/Library/Application Support/typora-user-images/image-20221101151014555.png)
-
-![1723983878729](images/k8s实践方式/1723983878729.png)
+![架构图片说明](https://zerosuc.github.io/posts/k8s/images/k8s%E5%AE%9E%E8%B7%B5%E6%96%B9%E5%BC%8F/1723983878729.png)
 
 etcd 奇数副本的 Raft 选举的高可用集群，一般用 3 个节点，在节点数目较大的时候可以用 5 个节点做集群；
 
