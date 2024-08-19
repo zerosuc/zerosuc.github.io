@@ -513,15 +513,13 @@ Gpu node 可以是 [root@prod.op.k8s.gpu-00.hz ops]
 
    可以多环境，多版本管理；权限，全流程，也可同 jenkins，harbor 集成。
 
-```
-![image-20221104095559237](/Users/wanmin/Library/Application Support/typora-user-images/image-20221104095559237.png)
-```
+![20221104095559237](https://zerosuc.github.io/posts/k8s/image-20221104095559237.png)
 
-![image-20221104100558792](/Users/wanmin/Library/Application Support/typora-user-images/image-20221104100558792.png)
+![image-20221104100558792](https://zerosuc.github.io/posts/k8s/image-20221104100558792.png)
 
-![image-20221104095825053](/Users/wanmin/Library/Application Support/typora-user-images/image-20221104095825053.png)
+![image-20221104095825053](https://zerosuc.github.io/posts/k8s/image-20221104095825053.png)
 
-![image-20221104100055058](/Users/wanmin/Library/Application Support/typora-user-images/image-20221104100055058.png)
+![image-20221104100055058](https://zerosuc.github.io/posts/k8s/image-20221104100055058.png)
 
 2. Argocd
 
@@ -540,40 +538,41 @@ Gpu node 可以是 [root@prod.op.k8s.gpu-00.hz ops]
 
    Eg:
 
-   ![image-20221103092910978](/Users/wanmin/Library/Application Support/typora-user-images/image-20221103092910978.png)
+![image-20221103092910978](https://zerosuc.github.io/posts/k8s/image-20221103092910978.png)
 
-![image-20221103104514144](/Users/wanmin/Library/Application Support/typora-user-images/image-20221103104514144.png)
+![image-20221103104514144](https://zerosuc.github.io/posts/k8s/image-20221103104514144.png)
 
 针对流量入口也要做监控
 
-![image-20221103105523115](/Users/wanmin/Library/Application Support/typora-user-images/image-20221103105523115.png)
+![alt text](image-20221101172423351.png)
+![image-20221103105523115](https://zerosuc.github.io/posts/k8s/image-20221103105523115.png)
 
 ## 演练
 
 1. k8s 核心组件的演练
 
-<img src="/Users/wanmin/Library/Application Support/typora-user-images/image-20221101172423351.png" alt="image-20221101172423351" style="zoom:50%;" />
+![](https://zerosuc.github.io/posts/k8s/image-20221101172423351.png")
 
 ## 告警
 
 1. 自定义规则的告警 使用 webhook 方式自定义告警，透传出来；
 2. 核心组件 同上
 
-![image-20221103092055524](/Users/wanmin/Library/Application Support/typora-user-images/image-20221103092055524.png)
+![image-20221103092055524](https://zerosuc.github.io/posts/k8s/image-20221103092055524.png)
 
-![image-20221103093311523](/Users/wanmin/Library/Application Support/typora-user-images/image-20221103093311523.png)
+![image-20221103093311523](https://zerosuc.github.io/posts/k8s/image-20221103093311523.png)
 
 4. 宿主机
 
-![image-20221103092416066](/Users/wanmin/Library/Application Support/typora-user-images/image-20221103092416066.png)
+![image-20221103092416066](https://zerosuc.github.io/posts/k8s/image-20221103092416066.png)
 
 4. 核心应用告警；
 
-![image-20221103094541550](/Users/wanmin/Library/Application Support/typora-user-images/image-20221103094541550.png)
+![image-20221103094541550](https://zerosuc.github.io/posts/k8s/image-20221103094541550.png)
 
 5. 集群所有的 waring、error 基本的告警都可以吐出来；第一时间感知集群情况；
 
-   ![image-20221103102943186](/Users/wanmin/Library/Application Support/typora-user-images/image-20221103102943186.png)
+   ![image-20221103102943186](https://zerosuc.github.io/posts/k8s/image-20221103102943186.png)
 
 6. 常用告警规则列表
 
@@ -643,7 +642,7 @@ Gpu node 可以是 [root@prod.op.k8s.gpu-00.hz ops]
 | TargetDown                         | 100\* (count(up == 0) BY (job, namespace, service) / count(up) BY (job, namespace, service)) > 10                                                                                                                                                                                                                                                                                                                                                                                                                                                    | 10                   | 目标下线。                      |
 | NodeNetworkInterfaceFlapping       | changes(node_network_up{job="node-exporter",device!~"veth.+"}[2m]) > 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 2                    | 网络接口状态变更过频繁。        |
 
-![image-20221103103611205](/Users/wanmin/Library/Application Support/typora-user-images/image-20221103103611205.png)
+![image-20221103103611205](https://zerosuc.github.io/k8s/image-20221103103611205.png)
 
 ## 巡检
 
