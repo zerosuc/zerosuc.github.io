@@ -155,7 +155,7 @@ post 请求一般是表单参数和 json 参数
 
 ### 2.1 表单参数
 
-![1724075529901](http://zerosuc.github.io/posts/gin/1724075529901.png)
+![1724075529901](https://zerosuc.github.io/posts/gin/1724075529901.png)
 
 ```go
 r.POST("/user/save", func(ctx *gin.Context) {
