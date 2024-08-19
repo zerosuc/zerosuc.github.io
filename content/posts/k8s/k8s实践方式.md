@@ -544,14 +544,13 @@ Gpu node 可以是 [root@prod.op.k8s.gpu-00.hz ops]
 
 针对流量入口也要做监控
 
-![alt text](image-20221101172423351.png)
 ![image-20221103105523115](https://zerosuc.github.io/posts/k8s/image-20221103105523115.png)
 
 ## 演练
 
 1. k8s 核心组件的演练
 
-![](https://zerosuc.github.io/posts/k8s/image-20221101172423351.png")
+![](https://zerosuc.github.io/posts/k8s/image-20221101172423351.png)
 
 ## 告警
 
