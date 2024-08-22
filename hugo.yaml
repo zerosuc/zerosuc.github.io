@@ -76,8 +76,8 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Hi there \U0001F44B"
-    Content: Welcome to my blog
+    Title: "全栈工程师 \U0001F44B"
+    Content: 致力于分享k8s,go语言编程,sre，vue相关点滴的碎碎念！
 
   socialIcons:
     - name: github
