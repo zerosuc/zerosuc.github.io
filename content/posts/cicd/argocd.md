@@ -6,7 +6,7 @@ categories: ["argocd"]
 tags: ["argocd"]
 ---
 
-# Argo CD[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#Argo-CD)
+# Argo CD
 
 [Argo CD](https://argoproj.github.io/argo-cd) 是一个为 Kubernetes 而生的，遵循声明式 GitOps 理念的持续部署工具。Argo CD 可在 Git 存储库更改时自动同步和部署应用程序。
 
@@ -21,7 +21,7 @@ Argo CD 遵循 GitOps 模式，使用 Git 仓库作为定义所需应用程序�
 
 Argo CD 可在指定的目标环境中自动部署所需的应用程序状态，应用程序部署可以在 Git 提交时跟踪对分支、标签的更新，或固定到清单的指定版本。
 
-## 架构[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#架构)
+## 架构
 
 ![ArgoCD架构](https://picdn.youdianzhishi.com/images/20210703110614.png)
 
@@ -47,7 +47,7 @@ Argo CD 是通过一个 Kubernetes 控制器来实现的，它持续 watch 正�
 
 **应用控制器**：应用控制器是一个 Kubernetes 控制器，它持续 watch 正在运行的应用程序并将当前的实时状态与所期望的目标状态（ repo 中指定的）进行比较。它检测应用程序的 `OutOfSync` 状态，并采取一些措施来同步状态，它负责调用任何用户定义的生命周期事件的钩子（PreSync、Sync、PostSync）。
 
-## 功能[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#功能)
+## 功能
 
 - 自动部署应用程序到指定的目标环境
 - 支持多种配置管理/模板工具（Kustomize、Helm、Ksonnet、Jsonnet、plain-YAML）
@@ -67,7 +67,7 @@ Argo CD 是通过一个 Kubernetes 控制器来实现的，它持续 watch 正�
 - Prometheus 监控指标
 - 用于覆盖 Git 中的 ksonnet/helm 参数
 
-## 核心概念[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#核心概念)
+## 核心概念
 
 - **Application**：应用，一组由资源清单定义的 Kubernetes 资源，这是一个 CRD 资源对象
 - **Application source type**：用来构建应用的工具
@@ -82,7 +82,7 @@ Argo CD 是通过一个 Kubernetes 控制器来实现的，它持续 watch 正�
 - **Configuration management tool**：配置管理工具
 - **Configuration management plugin**：配置管理插件
 
-## 安装[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#安装)
+## 安装
 
 当然前提是需要有一个 kubectl 可访问的 Kubernetes 的集群，直接使用下面的命令即可，这里我们安装最新的稳定版 v2.4.9：
 
@@ -289,7 +289,7 @@ argocd-server: v2.4.9+1ba9008
   Jsonnet Version: v0.18.0
 ```
 
-## 配置集群[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#配置集群)
+## 配置集群
 
 由于 Argo CD 支持部署应用到多集群，所以如果你要将应用部署到外部集群的时候，需要先将外部集群的认证信息注册到 Argo CD 中，如果是在内部部署（运行 Argo CD 的同一个集群，默认不需要配置），直接使用 `https://kubernetes.default.svc` 作为应用的 K8S APIServer 地址即可。
 
@@ -305,11 +305,11 @@ $ kubectl config get-contexts -o name
 $ argocd cluster add kind-kind
 ```
 
-## 创建应用[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#创建应用)
+## 创建应用
 
 Git 仓库 https://github.com/argoproj/argocd-example-apps.git 是一个包含留言簿应用程序的示例库，我们可以用该应用来演示 Argo CD 的工作原理。
 
-### 通过 CLI 创建应用[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#通过-CLI-创建应用)
+### 通过 CLI 创建应用
 
 我们可以通过 `argocd app create xxx` 命令来创建一个应用：
 
@@ -352,7 +352,7 @@ $ argocd app create guestbook --repo https://github.com/argoproj/argocd-example-
 application 'guestbook' created
 ```
 
-### 通过 UI 创建应用[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#通过-UI-创建应用)
+### 通过 UI 创建应用
 
 除了可以通过 CLI 工具来创建应用，我们也可以通过 UI 界面来创建，定位到 `argocd.k8s.local` 页面，登录后，点击 `+New App` 新建应用按钮，如下图：
 
@@ -372,7 +372,7 @@ application 'guestbook' created
 
 Argo CD 默认情况下每 3 分钟会检测 Git 仓库一次，用于判断应用实际状态是否和 Git 中声明的期望状态一致，如果不一致，状态就转换为 `OutOfSync`。默认情况下并不会触发更新，除非通过 `syncPolicy` 配置了自动同步。
 
-### 通过 CRD 创建[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#通过-CRD-创建)
+### 通过 CRD 创建
 
 除了可以通过 CLI 和 Dashboard 可以创建 Application 之外，其实也可以直接通过声明一个 `Application` 的资源对象来创建一个应用，如下所示：
 
@@ -395,11 +395,11 @@ spec:
     automated: null
 ```
 
-## 部署应用[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#部署应用)
+## 部署应用
 
 由于上面我们在创建应用的时候使用的同步策略为 `Manual`，所以应用创建完成后没有自动部署，需要我们手动去部署应用。同样可以通过 CLI 和 UI 界面两种同步方式。
 
-### 使用 CLI 同步[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#使用-CLI-同步)
+### 使用 CLI 同步
 
 应用创建完成后，我们可以通过如下所示命令查看其状态：
 
@@ -431,7 +431,7 @@ $ argocd app sync guestbook
 
 此命令从 Git 仓库中检索资源清单并执行 `kubectl apply` 部署应用，执行上面命令后 guestbook 应用便会运行在集群中了，现在我们就可以查看其资源组件、日志、事件和评估其健康状态了。
 
-### 通过 UI 同步[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#通过-UI-同步)
+### 通过 UI 同步
 
 直接添加 UI 界面上应用的 `Sync` 按钮即可开始同步：
 
@@ -461,13 +461,13 @@ kubernetes           ClusterIP      10.96.0.1        <none>         443/TCP     
 
 ![sync status](https://picdn.youdianzhishi.com/images/1660380018340.jpg)
 
-## Tekton 结合 Argo CD[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#Tekton-结合-Argo-CD)
+## Tekton 结合 Argo CD
 
 前面我们使用 Tekton 完成了应用的 CI/CD 流程，但是 CD 是在 Tekton 的任务中去完成的，现在我们使用 GitOps 的方式来改造我们的流水线，将 CD 部分使用 Argo CD 来完成。
 
 ![gitops workflow](https://picdn.youdianzhishi.com/images/20210706185635.png)
 
-这里我们要先去回顾下前面的 [Tekton 实战部分的内容](https://www.qikqiak.com/k3s/devops/tekton/action/)，整个流水线包括 clone、test、build、docker、deploy、rollback 几个部分的任务，最后的 deploy 和 rollback 属于 CD 部分，我们只需要这部分使用 Argo CD 来构建即可。
+整个流水线通常包括 clone、test、build、docker、deploy、rollback 几个部分的任务，最后的 deploy 和 rollback 属于 CD 部分，我们只需要这部分使用 Argo CD 来构建即可。
 
 首先我们将项目 `http://git.k8s.local/course/devops-demo.git` 仓库中的 Helm Chart 模板单独提取出来放到一个独立的仓库中 `http://git.k8s.local/course/devops-demo-deploy`，这样方便和 Argo CD 进行对接，整个项目下面只有用于应用部署的 Helm Chart 模板。
 
@@ -1000,7 +1000,7 @@ STARTED          DURATION   STATUS
 
 ![tekton+argocd](https://picdn.youdianzhishi.com/images/tekton-argocd-workflow.png)
 
-## webhook 配置[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#webhook-配置)
+## webhook 配置
 
 我们知道 Argo CD 会自动检查到配置的应用变化，这是因为 Argo CD 会每个三分钟去轮询一次 Git 存储库来检测清单的变化，为了消除这种轮询延迟，我们也可以将 API 服务端配置为接收 webhook 事件的方式，这样就能实时获取到 Git 存储库中的变化了。Argo CD 支持来着 GitHub、GitLab、Bitbucket、Bitbucket Server 和 Gogs 的 Git webhook 事件，这里我们仍然以上面的 GitLab 为例来说明如果配置 Webhook。
 
@@ -1035,7 +1035,7 @@ time="2022-08-16T09:27:12Z" level=info msg="Received push event repo: http://git
 time="2022-08-16T09:27:12Z" level=info msg="Requested app 'devops-demo' refresh"
 ```
 
-## Metrics 指标[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#Metrics-指标)
+## Metrics 指标
 
 Argo CD 作为我们持续部署的关键组件，对于本身的监控也是非常有必要的，Argo CD 本身暴露了两组 Prometheus 指标，所以我们可以很方便对接监控报警。
 
@@ -1099,13 +1099,13 @@ metadata:
 
 ![argocd grafana](https://picdn.youdianzhishi.com/images/1660645025837.jpg)
 
-## 安全[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#安全)
+## 安全
 
 GitOps 的核心理念就是**一切皆代码**，意味着用户名、密码、证书、token 等敏感信息也要存储到 Git 仓库中，这显然是非常不安全的，不过我们可以通过 Vault、Keycloak、SOPS 等 Secret 管理工具来解决，最简单的方式是使用 SOPS，因为它使用 PGP 密钥来加密内容，如果你使用 kustomize 则还可以在集群内使用相同的 PGP 密钥解密 Secret。ArgoCD 虽然没有内置的 Secret 管理，但是却可以与任何 Secret 管理工具集成。
 
 `sops` 是一款开源的加密文件的编辑器，支持 YAML、JSON、ENV、INI 和 BINARY 格式，同时可以用 AWS KMS、GCP KMS、Azure Key Vault、age 和 PGP 进行加密，官方推荐使用 `age` 来进行加解密，所以我们这里使用 `age`。[age](https://github.com/FiloSottile/age/) 是一个简单、现代且安全的加密工具（和 Go 库）。
 
-### SOPS 与 AGE[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#SOPS-与-AGE)
+### SOPS 与 AGE
 
 首先需要安装 `age` 工具，可以直接从 [Release 页面](https://github.com/FiloSottile/age/releases) 下载对应的安装包：
 
@@ -1261,7 +1261,7 @@ creation_rules:
 
 这样的话则只会对 `username` 和 `password` 两个字段进行加密。
 
-### ArgoCD 集成 SOPS[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#ArgoCD-集成-SOPS)
+### ArgoCD 集成 SOPS
 
 现在我们可以使用 `sops` 来对私密的文件进行加解密了，前面示例中我们在 ArgoCD 中使用的 Helm Chart 方式来同步应用，比如我们会在 values 文件中提供一些比较私密的信息，直接明文提供存储到 Git 仓库上显然是非常不安全的，这个时候我们就可以使用 `sops` 来对这些 values 文件进行加密，当然在同步应用的时候自然就需要 ArgoCD 能够支持对手 `SOPS` 进行解密了，这里我们还需要使用到 [helm-secrets](https://github.com/jkroepke/helm-secrets) 这个 Helm 插件。
 
@@ -1471,7 +1471,7 @@ spec:
 
 ![应用同步](https://picdn.youdianzhishi.com/images/1660810844961.png)
 
-## 消息通知[¶](https://www.qikqiak.com/k3s/devops/gitops/argocd/#消息通知)
+## 消息通知
 
 上面我们配置了 Argo CD 的监控指标，我们可以通过 AlertManager 来进行报警，但是有的时候我们可能希望将应用同步的状态发送到指定的渠道，这样方便我们了解部署流水线的结果，Argo CD 本身并没有提供内置的同步状态通知功能，但是我们可以与第三方的系统进行集成。
 

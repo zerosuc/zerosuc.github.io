@@ -10,11 +10,11 @@ tags: ["openkruise rollouts"]
 
 本文主要介绍如何使 Kruise Rollout 生效以及如何完成一个完整的发布，并回答一些关于用法的问题。
 
-## 完整的发布流程[](https://openkruise.io/zh/rollouts/user-manuals/basic-usage#完整的发布流程)
+## 完整的发布流程
 
-### 步骤 0：要求[](https://openkruise.io/zh/rollouts/user-manuals/basic-usage#步骤-0要求)
+### 步骤 0：要求
 
-- [安装](https://openkruise.io/zh/rollouts/installation) Kruise Rollouts。
+- 安装 Kruise Rollouts。
 - 假设您的 Kubernetes 集群中已经有一个部署（Deployment），如下所示：
 
 ```yaml
@@ -42,7 +42,7 @@ spec:
               value: "version-1"
 ```
 
-### 步骤 1：准备并应用 Rollout 配置[](https://openkruise.io/zh/rollouts/user-manuals/basic-usage#步骤-1准备并应用-rollout-配置)
+### 步骤 1：准备并应用 Rollout 配置
 
 假设您想要使用多批次更新策略将部署从 "version-1" 升级到 "version-2"：
 
@@ -72,7 +72,7 @@ spec:
 EOF
 ```
 
-### 步骤 2：将部署升级到 "version-2" 并发布第一批次[](https://openkruise.io/zh/rollouts/user-manuals/basic-usage#步骤-2将部署升级到-version-2-并发布第一批次)
+### 步骤 2：将部署升级到 "version-2" 并发布第一批次
 
 ```bash
 $ kubectl patch deployment workload-demo -p \
@@ -83,7 +83,7 @@ $ kubectl patch deployment workload-demo -p \
 
 ![img](https://openkruise.io/zh/assets/images/basic-1st-batch-2d4dd66aea0d6933125c38b15e35dc8d.jpg)
 
-### 步骤 3：继续发布第二批次[](https://openkruise.io/zh/rollouts/user-manuals/basic-usage#步骤-3继续发布第二批次)
+### 步骤 3：继续发布第二批次
 
 ```bash
 $ kubectl-kruise rollout approve rollout/rollouts-demo -n default
@@ -95,7 +95,7 @@ $ kubectl-kruise rollout approve rollout/rollouts-demo -n default
 
 ![img](https://openkruise.io/zh/assets/images/basic-2nd-batch-c101777d8ae2c5b4896022518aae360c.jpg)
 
-### 步骤 4：继续发布第三批次[](https://openkruise.io/zh/rollouts/user-manuals/basic-usage#步骤-4继续发布第三批次)
+### 步骤 4：继续发布第三批次
 
 ```bash
 $ kubectl-kruise rollout approve rollout/rollouts-demo -n default
@@ -105,7 +105,7 @@ $ kubectl-kruise rollout approve rollout/rollouts-demo -n default
 
 ![img](https://openkruise.io/zh/assets/images/basic-3rd-batch-8c5da0186f4ebb578c4f44787d1c65aa.jpg)
 
-## 如何手动继续下一步？[](https://openkruise.io/zh/rollouts/user-manuals/basic-usage#如何手动继续下一步)
+## 如何手动继续下一步？
 
 目前有两种方法。例如，**如果您已完成第一批次并希望发送第二批次：**
 
@@ -134,7 +134,7 @@ spec:
 $ kubectl-kruise rollout approve rollout/<your-rollout-name> -n <your-rollout-namespace>
 ```
 
-## 如何知道当前步骤是否已准备就绪？[](https://openkruise.io/zh/rollouts/user-manuals/basic-usage#如何知道当前步骤是否已准备就绪)
+## 如何知道当前步骤是否已准备就绪？
 
 关于当前步骤的所有状态信息都记录在 Rollout 的 `status.canaryStatus` 字段中：
 
